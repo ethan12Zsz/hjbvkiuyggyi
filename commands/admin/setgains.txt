@@ -1,0 +1,48 @@
+const Discord = require("discord.js");
+const db = require("quick.db");
+
+module.exports = {
+    name: "setgain",
+    aliases: [],
+    cooldown: 2000,
+    whitelistOnly: true,
+    userPermissions: ["ADMINISTRATOR"],
+    botPermissions: [],
+    async execute(client, message, args, data) {
+        if (!args[0]) return message.lineReply(message.translate.error(this, "args"))
+if (args[0] === "cam")  {
+            if (!args[1]) return message.lineReply(message.translate.error(this, "args"))
+           
+            if (isNaN(args[1])) return message.lineReply(message.translate.error(this, "args"))
+db.set(`cam_${message.guild.id}`, args[1])
+message.lineReply(`✅ J'ai bien définit les gain de **cam** sur ${args[1]} coins :coin:`)
+
+
+        } else if (args[0] === "stream") {
+            if (!args[1]) return message.lineReply(message.translate.error(this, "args"))
+           
+            if (isNaN(args[1])) return message.lineReply(message.translate.error(this, "args"))
+db.set(`stream_${message.guild.id}`, args[1])
+message.lineReply(`✅ J'ai bien définit les gain de **stream** sur ${args[1]} coins :coin:`)
+        } if (args[0] === "vocal"||"voc") {
+            if (!args[1]) return message.lineReply(message.translate.error(this, "args"))
+           
+            if (isNaN(args[1])) return message.lineReply(message.translate.error(this, "args"))
+db.set(`voc_${message.guild.id}`, args[1])
+message.lineReply(`✅ J'ai bien définit les gain de **vocal** sur ${args[1]} coins :coin:`)
+        } else if (args[0] === "temps") {
+            if (!args[1]) return message.lineReply(message.translate.error(this, "args"))
+           
+            if (isNaN(args[1])) return message.lineReply(message.translate.error(this, "args"))
+db.set(`temps_${message.guild.id}`, args[1])
+message.lineReply(`✅ J'ai bien définit le temps des gain de **vocal** sur ${args[1]} minutes`)
+        } else if (args[0] === "message"||"msg") { 
+           
+            if (isNaN(args[1])) return message.lineReply(message.translate.error(this, "args"))
+db.set(`msg_${message.guild.id}`, args[1])
+message.lineReply(`✅ J'ai bien définit les gain de **message** sur ${args[1]} coins :coin:`)
+
+        }
+      
+    }
+}
